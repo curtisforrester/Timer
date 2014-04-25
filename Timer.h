@@ -42,13 +42,13 @@ public:
   int8_t after(unsigned long duration, void (*callback)(void*), void* context);
   int8_t oscillate(uint8_t pin, unsigned long period, uint8_t startingValue);
   int8_t oscillate(uint8_t pin, unsigned long period, uint8_t startingValue, int repeatCount);
-  
+
   /**
    * This method will generate a pulse of !startingValue, occuring period after the
    * call of this method and lasting for period. The Pin will be left in !startingValue.
    */
   int8_t pulse(uint8_t pin, unsigned long period, uint8_t startingValue);
-  
+
   /**
    * This method will generate a pulse of pulseValue, starting immediately and of
    * length period. The pin will be left in the !pulseValue state
@@ -57,6 +57,7 @@ public:
   int8_t stop(int8_t id);
   void update(void);
   void update(unsigned long now);
+  bool remaining(uint8_t id, unsigned long &remainingMillis);
 
 protected:
   Event _events[MAX_NUMBER_OF_EVENTS];

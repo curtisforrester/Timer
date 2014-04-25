@@ -141,3 +141,18 @@ int8_t Timer::findFreeEventIndex(void)
     }
     return NO_TIMER_AVAILABLE;
 }
+
+/* Returns the millis remaining for an event */
+bool Timer::remaining(uint8_t id, unsigned long &remainingMillis)
+{
+	if(id >= MAX_NUMBER_OF_EVENTS)
+		return false;
+
+	long delta = _events[id].period-(millis() - _events[id].lastEventTime);
+	if(delta>0)
+		remainingMillis = (unsigned long)delta;
+	else
+		remainingMillis = 0;
+	return true;
+}
+
